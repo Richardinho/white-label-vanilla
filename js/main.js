@@ -1,8 +1,8 @@
 'use strict';
 
-var Router = require('./router.js');
-var delegate = require('./delegate.js');
-var TemplateEngine = require('./template.js');
+var Router = require('router');
+var delegate = require('delegate');
+var TemplateEngine = require('template');
 
 
 var app = document.getElementById('app');

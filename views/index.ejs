@@ -113,7 +113,20 @@
 
 	<script src='/system.js'></script>
 	<script>
-	  System.import('/js/main.js');
+
+		System.config({
+			baseURL : './js',
+			depCache : {
+				main : ['router', 'template', 'delegate']
+			},
+			map: {
+				'main': 'main.js',
+				'router' : 'router.js',
+				'template' : 'template.js',
+				'delegate' : 'delegate.js'
+			}
+		});
+	  System.import('main');
 	</script>
 
 </body>
