@@ -1,3 +1,10 @@
+'use strict';
+
+var Router = require('./router.js');
+var delegate = require('./delegate.js');
+var TemplateEngine = require('./template.js');
+
+
 var app = document.getElementById('app');
 
 var router = new Router({
@@ -52,8 +59,8 @@ function homeController (appEl) {
 
 			appEl.appendChild(el);
 
-			new SelectionBox('#simple-styling');
-			new SelectionBox('#dynasties');
+			//new SelectionBox('#simple-styling');
+			//new SelectionBox('#dynasties');
 			removeLoadingPanel();
 
 		});
@@ -125,8 +132,10 @@ function removeLoadingPanel() {
 	document.body.classList.remove('loading');
 }
 
+var url = window.config.API_URL;
+
 function getData(queryString) {
-	return fetch('https://white-label-api.herokuapp.com/api/emperors' + '?' + queryString).then(function (response) {
+	return fetch(url + '/api/emperors' + '?' + queryString).then(function (response) {
 		return response.json().then(function(json) {
 			return createModel(json, queryString);
 		});
@@ -134,7 +143,7 @@ function getData(queryString) {
 }
 
 function getEmperorData(queryString) {
-	return fetch('https://white-label-api.herokuapp.com/api/emperor' + '?' + queryString).then(function (response) {
+	return fetch(url + '/api/emperor' + '?' + queryString).then(function (response) {
 		return response.text().then(function (text) {
 			return createEmperorModel(text);
 		});

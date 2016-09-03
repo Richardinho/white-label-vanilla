@@ -15,6 +15,12 @@
 	<link href='https://white-label-elements.herokuapp.com/loading-panel/main.css' rel='stylesheet'>
 	<link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+
+	<script>
+		window.config = {
+			API_URL : '<$= apiUrl $>'
+		};
+	</script>
 </head>
 <body>
 
@@ -89,7 +95,7 @@
 		<div class="banner">
 			<h1>
 				<a href="">
-					White Label
+					White Label<$= title  $>
 				</a>
 			</h1>
 		</div>
@@ -105,14 +111,10 @@
 		<h1><% this.name %></h1>
 	</script>
 
+	<script src='/system.js'></script>
+	<script>
+	  System.import('/js/main.js');
+	</script>
 
-
-	<script src='/selection-box/lib/sundry.js'></script>
-	<script src='/selection-box/lib/dom.js'></script>
-	<script src='/selection-box/selection-box.js'></script>
-	<script src='/js/router.js'></script>
-	<script src='/js/delegate.js'></script>
-	<script src='/js/template.js'></script>
-	<script src='/js/main.js'></script>
 </body>
 </html>

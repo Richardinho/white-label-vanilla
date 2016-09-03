@@ -29,3 +29,5 @@ function addJS(line) {
 		return 'r.push(' + line + ');\n';
 	}
 }
+
+module.exports = TemplateEngine;

@@ -1,3 +1,5 @@
+'use strict';
+
 function delegate(el, config) {
 
 	Object.keys(config).forEach(function (key) {
@@ -41,3 +43,5 @@ function convertEvent(event, currentTarget, target){
 		stopPropagation : event.stopPropagation.bind(event)
 	});
 }
+
+module.exports = delegate;
