@@ -1,0 +1,1 @@
+module.exports = require("npm:richardUtils@0.6.3/src/index.js");

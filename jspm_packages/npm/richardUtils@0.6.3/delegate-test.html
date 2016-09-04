@@ -1,0 +1,40 @@
+<html>
+	<head>
+	</head>
+	<body>
+
+	<ul id='list'>
+		<li tabindex='0'>apple</li>
+		<li tabindex='0'>banana</li>
+		<li tabindex='0'>carrot</li>
+		<li tabindex='0'>donut</li>
+		<li tabindex='0'>eclair
+			<div>
+				<h2 tabindex='0'>I love chocolate eclairs</h2>
+			</div>
+		</li>
+		<li tabindex='0'>fish</li>
+		<li tabindex='0'>gingerbread</li>
+	</ul>
+
+	<script src="https://jspm.io/system@0.19.js"></script>
+	<script>
+		System.config({
+			map : {
+				utils : './src'
+			},
+			packages : {
+				'utils' : {
+					format : 'cjs',  // default is 'amd' , works with both. Not tried 'global' yet.
+					main : 'index.js'
+				}
+			}
+		});
+		System.import('utils').then(function(utils) {
+			utils.domUtils.delegate(document.querySelector('#list'),'click',  'li', function (event) {
+				console.log('hello', event.target);
+			});
+		});
+	</script>
+	</body>
+<html>

@@ -1,0 +1,1 @@
+module.exports = require("npm:selection-box@0.1.1/build/selection-box.js");

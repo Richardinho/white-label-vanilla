@@ -9,15 +9,28 @@
   "author": "Richard Hunter",
   "license": "ISC",
   "dependencies": {
+    "ejs": "^2.5.1",
     "express": "^4.14.0",
-    "systemjs": "^0.19.37",
-    "ejs": "^2.5.1"
+    "jspm": "^0.16.45",
+    "systemjs": "^0.19.37"
   },
   "directories": {
-    "test": "test"
+    "test": "test",
+    "packages": "jspm_packages"
   },
   "description": "",
-  "devDependencies": {
-
+  "devDependencies": {},
+  "jspm": {
+    "directories": {
+      "test": "test"
+    },
+    "dependencies": {
+      "selection-box": "npm:selection-box@^0.1.1"
+    },
+    "devDependencies": {
+      "babel": "npm:babel-core@^5.8.24",
+      "babel-runtime": "npm:babel-runtime@^5.8.24",
+      "core-js": "npm:core-js@^1.1.4"
+    }
   }
 }

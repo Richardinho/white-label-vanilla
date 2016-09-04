@@ -1,10 +1,9 @@
 'use strict';
 
-var Router = require('router');
-var delegate = require('delegate');
-var TemplateEngine = require('template');
-
-
+var Router = require('js/router.js');
+var delegate = require('js/delegate.js');
+var TemplateEngine = require('js/template.js');
+var SelectionBox = require('selection-box');
 var app = document.getElementById('app');
 
 var router = new Router({
@@ -59,8 +58,8 @@ function homeController (appEl) {
 
 			appEl.appendChild(el);
 
-			//new SelectionBox('#simple-styling');
-			//new SelectionBox('#dynasties');
+			new SelectionBox('#simple-styling');
+			new SelectionBox('#dynasties');
 			removeLoadingPanel();
 
 		});
