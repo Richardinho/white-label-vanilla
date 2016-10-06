@@ -6,11 +6,12 @@ ejs.delimiter = '$';
 
 var port = process.env.PORT || 5000;
 var isDev = process.argv[2] && process.argv[2] === 'dev';
-var apiUrl = isDev ? 'http://localhost:4000' : 'https://white-label-api.herokuapp.com';
+var apiUrl = isDev ? 'http://localhost:5000' : 'https://white-label-api.herokuapp.com';
 
 app.set('view engine', 'ejs');
 
 if(isDev) {
+	port = 3000;
 	app.use('/system.js', express.static('./jspm_packages/system.js'));
 	app.use('/jspm_packages', express.static('./jspm_packages'));
 	app.use('/js', express.static('js'));
@@ -27,7 +28,7 @@ var config = {
 	isDev : isDev
 };
 
-app.get('/', function (req, res) {
+app.get('*', function (req, res) {
   res.render('index', config);
 });
 

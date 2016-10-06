@@ -1,0 +1,1 @@
+module.exports = require("npm:requirejs@2.3.2/bin/r.js");
