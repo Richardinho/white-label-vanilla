@@ -1,3 +1,5 @@
+'use strict';
+
 var getQueryParams = function() {
 
 	return function (queryString) {

@@ -1,3 +1,5 @@
+'use strict';
+
 function Router(routeConfig) {
 	this.routes = Object.keys(routeConfig || {}).map(function (route) {
 		return this.createRoute(route, routeConfig[route]);
@@ -7,9 +9,7 @@ function Router(routeConfig) {
 Router.prototype = {
 
 	addRoute : function (route, handler) {
-
 		this.routes.push(this.createRoute(route, handler));
-
 	},
 
 	createRoute : function (route, handler) {

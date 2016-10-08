@@ -1,3 +1,5 @@
+'use strict';
+
 function DataService (options) {
 	this.getQueryParams = options.getQueryParams;
 	this.createEmperorModel = options.createEmperorModel;

@@ -1,12 +1,17 @@
+'use strict';
+//  todo page manager
 
 function emperorController(options, locals) {
 
-	var appEl = locals[0],
-	    loadingPanel = options.loadingPanel,
-	    dataService = options.dataService,
-	    delegate = options.delegate,
-	    handleInternalLink = options.handleInternalLink,
-	    addSection = options.addSection;
+	var appEl = locals[0]
+	    ,loadingPanel = options.loadingPanel
+	    ,dataService = options.dataService
+	    ,delegate = options.delegate
+	    ,handleInternalLink = options.handleInternalLink
+	    ,bannerTemplate = options.bannerTemplate
+	    ,emperorTemplate = options.emperorTemplate
+	    ,html = options.html
+	    ;
 
 	return function handleRequest(queryString) {
 
@@ -19,18 +24,21 @@ function emperorController(options, locals) {
 				'click [data-internal-link]' : handleInternalLink
 			});
 			el.className = 'container';
-			addSection(el, 'banner-template', {});
-			addSection(el, 'emperor-template', model.getEmperor());
+			html(el, bannerTemplate({}));
+			html(el, emperorTemplate(model.getEmperor()));
 			appEl.appendChild(el);
 			loadingPanel.removeLoadingPanel();
 		});
 	};
 }
 emperorController.inject = [
-	'loadingPanel',
-	'dataService',
-	'delegate',
-	'handleInternalLink',
-	'addSection'];
+	'loadingPanel'
+	,'dataService'
+	,'delegate'
+	,'handleInternalLink'
+	,'bannerTemplate'
+	,'emperorTemplate'
+	,'html'
+	]
 
 module.exports = emperorController;

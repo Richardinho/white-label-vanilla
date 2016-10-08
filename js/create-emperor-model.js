@@ -1,5 +1,6 @@
-var createEmperorModel = function () {
+'use strict';
 
+var createEmperorModel = function () {
 
 	return function (text) {
 		return {

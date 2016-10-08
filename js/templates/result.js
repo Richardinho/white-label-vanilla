@@ -1,0 +1,3 @@
+module.exports = function (data) { return (function anonymous() {
+var r=[];r.push("<div class=\"media search-result-item _10px\"><a class=\"media-image\" class='search-result-item-image'><img alt=\"\" src=\"https://white-label-elements.herokuapp.com/images/medium/");r.push( this.id );r.push(".jpg\"></a><div class=\"media-body\"><h3><a data-internal-link href=\"/emperor?id=");r.push( this.id );r.push("\">");r.push( this.name );r.push("</a></h3><div class=\"add-info\">");r.push( this.from );r.push(" ");r.push( this.to );r.push("</div></div></div>");return r.join("");
+}).apply(data); };

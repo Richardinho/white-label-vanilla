@@ -1,15 +1,15 @@
+'use strict';
+
 let renderAside = function (options) {
 
-	var getTemplate = options.getTemplate;
 	var html = options.html;
-	var TemplateEngine = options.TemplateEngine;
 	var delegate = options.delegate;
 	var filters = options.filters;
+	var asideTemplate = options.asideTemplate;
 
 	return function (el, model) {
 
-		var asideTemplate = getTemplate('aside-template');
-		html(el, TemplateEngine(asideTemplate, model.getRefinements()));
+		html(el, asideTemplate(model.getRefinements()));
 
 		delegate(el, {
 			'change #simple-styling' : filters.createHandleSortByToggle(model),
@@ -20,6 +20,6 @@ let renderAside = function (options) {
 
 	}
 }
-renderAside.inject = ['getTemplate', 'html', 'TemplateEngine', 'delegate', 'filters'];
+renderAside.inject = ['html', 'delegate', 'filters', 'asideTemplate'];
 
 module.exports = renderAside;

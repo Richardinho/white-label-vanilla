@@ -12,6 +12,7 @@
     "ejs": "^2.5.1",
     "express": "^4.14.0",
     "jspm": "^0.16.45",
+    "replace-ext": "^1.0.0",
     "systemjs": "^0.19.37"
   },
   "directories": {

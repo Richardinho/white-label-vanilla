@@ -1,3 +1,4 @@
+'use strict';
 
 function Bootstrap(options) {
 
@@ -7,13 +8,9 @@ function Bootstrap(options) {
 
 }
 
-
-
 Bootstrap.prototype = {
 
 	start : function () {
-
-		console.log('start bootstrap');
 
 		this.router.start();
 

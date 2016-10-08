@@ -1,18 +1,25 @@
+'use strict';
 
 var TemplateEngine = function(tpl, data) {
-		var re = /<%([^%>]+)?%>/g,
-		    code = 'var r=[];\n',
-		    cursor = 0,
-		    match;
+	return getTemplateFunction(tpl).apply(data);
+}
 
-		while(match = re.exec(tpl)) {
-			code+= addHTML(tpl.slice(cursor, match.index));
-			code+= addJS(match[1]);
-			cursor = match.index + match[0].length;
-		}
-		code += addHTML(tpl.substr(cursor, tpl.length - cursor));
-		code += 'return r.join("");'; // <-- return the result
-		return new Function(code.replace(/[\r\t\n]/g, '')).apply(data);
+function getTemplateFunction (tpl) {
+
+	var re = /<%([^%>]+)?%>/g,
+	    code = 'var r=[];\n',
+	    cursor = 0,
+	    match;
+
+	while(match = re.exec(tpl)) {
+		code+= addHTML(tpl.slice(cursor, match.index));
+		code+= addJS(match[1]);
+		cursor = match.index + match[0].length;
+	}
+	code += addHTML(tpl.substr(cursor, tpl.length - cursor));
+	code += 'return r.join("");'; // <-- return the result
+	return new Function(code.replace(/[\r\t\n]/g, ''));
+
 }
 
 function addHTML(line) {
@@ -28,4 +35,5 @@ function addJS(line) {
 	}
 }
 
-module.exports = TemplateEngine;
+module.exports.getTemplateFunction = getTemplateFunction;
+module.exports.TemplateEngine = TemplateEngine;

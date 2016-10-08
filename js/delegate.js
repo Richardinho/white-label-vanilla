@@ -1,5 +1,7 @@
 'use strict';
 
+'use strict';
+
 function delegate(el, config) {
 
 	Object.keys(config).forEach(function (key) {

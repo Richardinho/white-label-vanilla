@@ -27,89 +27,8 @@
 	<div id='app'></div>
 
 	<div class='spinner'>
-		<img src='https://white-label-elements.herokuapp.com/arrow.svg'>
+		<img src='https://white-label-elements.herokuapp.com/arrow.svg'/>
 	</div>
-
-	<script type='text/html' id='result-template'>
-		<div class="media search-result-item _10px">
-			<a class="media-image" class='search-result-item-image'>
-				<img alt="" src="https://white-label-elements.herokuapp.com/images/medium/<% this.id %>.jpg">
-			</a>
-			<div class="media-body">
-				<h3><a data-internal-link href="/emperor?id=<% this.id %>"><% this.name %></a></h3>
-				<div class="add-info"><% this.from %> <% this.to %>
-				</div>
-			</div>
-		</div>
-	</script>
-
-	<script type='text/html' id='aside-template'>
-		<div class="menu">
-			<h2>Filters</h2>
-			<ul class="filters">
-				<h3>Time range</h3>
-				<li class="range-filters">
-					<label for="year-from">from</label>
-					<input id="year-from"
-								 type="range"
-								 step="1"
-								 min="<% this.minYear %>"
-								 value='<% this.yearFrom %>'
-								 max="<% this.maxYear %>">
-					<label for="year-from"><% this.yearFrom %></label>
-				</li>
-				<li class="range-filters">
-					<label for="year-to">to</label>
-					<input id="year-to"
-								 type="range"
-								 step="1"
-								 min="<% this.minYear %>"
-								 value='<% this.yearTo %>'
-								 max="<% this.maxYear %>">
-					<label for="year-to"><% this.yearTo %></label>
-				</li>
-			</ul>
-			<h4 for='dynasties'>Dynasty</h4>
-			<select id='dynasties'>
-				<option <% if(this.dynasty=='all') { %> selected <% } %>>all</option>
-				<option <% if(this.dynasty=='Julio-Claudian') { %> selected <% } %>>Julio-Claudian</option>
-				<option <% if(this.dynasty=='Flavian') { %> selected <% } %>>Flavian</option>
-				<option <% if(this.dynasty=='Nerva-Antonine') { %> selected <% } %> value='Nerva-Antonine'>Nerva–Antonine</option>
-				<option <% if(this.dynasty=='Severan') { %> selected <% } %>>Severan</option>
-				<option <% if(this.dynasty=='Gordian') { %> selected <% } %>>Gordian</option>
-			</select>
-			<h3>Sort by</h3>
-			<select id='simple-styling'>
-				<option value='reign-asc' <% if(this.sortBy=='reign-asc') { %> selected <% } %>>reign shortest first</option>
-				<option value='reign-desc' <% if(this.sortBy=='reign-desc') { %> selected <% } %>>reign longest first</option>
-				<option value='succession' <% if(this.sortBy=='succession') { %> selected <% } %>>succession ascending</option>
-			</select>
-		</div>
-	</script>
-
-	<script type='text/html' id='footer-template'>
-		<div class="footer _14px">©richard hunter 2016</div>
-	</script>
-
-	<script type='text/html' id='banner-template'>
-		<div class="banner">
-			<h1>
-				<a href="">
-					White Label<$= title  $>
-				</a>
-			</h1>
-		</div>
-	</script>
-
-	<script type='text/html' id='emperor-template'>
-		<div class='emperor'>
-			<p><% this.text %></p>
-		</div>
-	</script>
-
-	<script type='text/html' id='my-template'>
-		<h1><% this.name %></h1>
-	</script>
 
 	<$if (isDev) { $>
 		<script src='/system.js'></script>
@@ -117,10 +36,9 @@
 		<script>
 		  System.import('/js/main.js');
 		</script>
-  <$ } else { $>
+	<$ } else { $>
 		<script src='/app.js'></script>
 	<$ } $>
-
 
 </body>
 </html>
