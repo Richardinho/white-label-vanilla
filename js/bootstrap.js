@@ -3,8 +3,8 @@
 function Bootstrap(options) {
 
 	this.router = options.router;
-	this.router.addRoute('', options.homeController);
-	this.router.addRoute('emperor', options.emperorController);
+	this.router.addRoute('', options.handleRequest('HomeController'));
+	//this.router.addRoute('emperor', options.handleRequest('emperorController'));
 
 }
 
@@ -17,6 +17,6 @@ Bootstrap.prototype = {
 	}
 };
 
-Bootstrap.inject = ['router', 'homeController', 'emperorController'];
+Bootstrap.inject = ['router', 'emperorController', 'handleRequest'];
 
 module.exports = Bootstrap;

@@ -1,62 +1,64 @@
 'use strict';
 
-function homeController (options, locals) {
-	var appEl = locals[0]
-	    ,loadingPanel = options.loadingPanel
-	    ,dataService = options.dataService
-	    ,delegate = options.delegate
-	    ,handleInternalLink = options.handleInternalLink
-	    ,renderAside = options.renderAside
-	    ,renderResults = options.renderResults
-	    ,SelectionBox = options.SelectionBox
-	    ,footerTemplate = options.footerTemplate
-	    ,html = options.html
-	    ,bannerTemplate = options.bannerTemplate
-	    ;
+function HomeController (options, locals) {
+	console.log('create new controller');
+	this.appEl = locals[0];
+	this.loadingPanel = options.loadingPanel;
+	this.dataService = options.dataService;
+	this.delegate = options.delegate;
+	this.handleInternalLink = options.handleInternalLink;
+	this.renderAside = options.renderAside;
+	this.renderResults = options.renderResults;
+	this.SelectionBox = options.SelectionBox;
+	this.footerTemplate = options.footerTemplate;
+	this.html = options.html;
+	this.bannerTemplate = options.bannerTemplate;
+}
 
+HomeController.prototype = {
 
-	return function handleRequest(queryString) {
+	handleRequest : function (queryString) {
 
-		loadingPanel.addLoadingPanel();
+		this.loadingPanel.addLoadingPanel();
 
-		dataService.getData(queryString).then(function (model) {
+		this.dataService.getData(queryString).then((model) => {
 
 			var el = document.createElement('div');
 			el.className = 'container';
-			appEl.innerHTML = '';
+			this.appEl.innerHTML = '';
 
-			delegate(el, {
-				'click [data-internal-link]' : handleInternalLink
+			this.delegate(el, {
+				'click [data-internal-link]' : this.handleInternalLink
 			});
 
 			var asideEl = document.createElement('div');
 			asideEl.className = 'aside';
-			renderAside(asideEl, model);
+			this.renderAside(asideEl, model);
 
 			var mainEl = document.createElement('div');
 			mainEl.className = 'content';
 
-			html(el, bannerTemplate({}));
+			this.html(el, this.bannerTemplate({}));
 
-			renderResults(mainEl, model.getResults());
+			this.renderResults(mainEl, model.getResults());
 
 			el.appendChild(asideEl);
 			el.appendChild(mainEl);
 
-			html(el, footerTemplate({}));
+			this.html(el, this.footerTemplate({}));
 
-			appEl.appendChild(el);
+			this.appEl.appendChild(el);
 
-			new SelectionBox('#simple-styling');
-			new SelectionBox('#dynasties');
+			new this.SelectionBox('#simple-styling');
+			new this.SelectionBox('#dynasties');
 
-			loadingPanel.removeLoadingPanel();
+			this.loadingPanel.removeLoadingPanel();
 
 		});
 	}
-}
+};
 
-homeController.inject = [
+HomeController.inject = [
 	'dataService'
 	,'delegate'
 	,'handleInternalLink'
@@ -70,4 +72,4 @@ homeController.inject = [
 	];
 
 
-module.exports = homeController;
+module.exports = HomeController;

@@ -1,4 +1,8 @@
-# White Label: Vanilla Version
-Written using vanilla ES5 Javascript. Using SystemJS for loading
+# Single page application written with vanilla Javascript
 
-### Running tests
+
+### Technologies used
+* Javascript
+* SystemJS
+
+

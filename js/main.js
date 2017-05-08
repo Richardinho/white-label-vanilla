@@ -5,7 +5,7 @@ let SelectionBox       = require('selection-box');
 let Router             = require('js/router.js');
 let delegate           = require('js/delegate.js');
 let Bootstrap          = require('js/bootstrap.js');
-let homeController     = require('js/home-controller.js');
+let HomeController     = require('js/home-controller.js');
 let emperorController  = require('js/emperor-controller.js');
 let getQueryParams     = require('js/get-query-parameters.js');
 let createEmperorModel = require('js/create-emperor-model.js');
@@ -21,13 +21,14 @@ let asideTemplate      = require('js/templates/aside.js');
 let footerTemplate     = require('js/templates/footer.js');
 let bannerTemplate     = require('js/templates/banner.js');
 let emperorTemplate    = require('js/templates/emperor.js');
+let handleRequest      = require('js/handle-request.js');
 
 let app = document.getElementById('app');
 let injector = new Injector();
 
 injector.register('router',             Router,             Injector.CACHE_INSTANCE);
 injector.register('dataService',        DataService,        Injector.CACHE_INSTANCE);
-injector.register('homeController',     homeController,     Injector.FACTORY_FUNCTION, [app]);
+injector.register('HomeController',     HomeController,     Injector.INSTANCE, [app]);
 injector.register('emperorController',  emperorController,  Injector.FACTORY_FUNCTION, [app]);
 injector.register('getQueryParams',     getQueryParams,     Injector.FACTORY_FUNCTION);
 injector.register('createEmperorModel', createEmperorModel, Injector.FACTORY_FUNCTION);
@@ -45,7 +46,8 @@ injector.register('asideTemplate',      asideTemplate,      Injector.VALUE);
 injector.register('footerTemplate',     footerTemplate,     Injector.VALUE);
 injector.register('bannerTemplate',     bannerTemplate,     Injector.VALUE);
 injector.register('emperorTemplate',    emperorTemplate,    Injector.VALUE);
-
+injector.register('handleRequest',      handleRequest,      Injector.FACTORY_FUNCTION);
+injector.register('injector',           injector,           Injector.VALUE);
 
 injector.start('bootstrap', function (bootstrap) {
 
