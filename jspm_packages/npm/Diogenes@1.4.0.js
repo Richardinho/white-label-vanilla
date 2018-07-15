@@ -1,1 +1,0 @@
-module.exports = require("npm:Diogenes@1.4.0/lib/injector.js");

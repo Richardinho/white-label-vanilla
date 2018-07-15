@@ -4,16 +4,19 @@
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js dev"
+    "start": "node server.js dev",
+    "build": "webpack --config webpack.config.js"
   },
   "author": "Richard Hunter",
   "license": "ISC",
   "dependencies": {
+    "Diogenes": "^1.4.10",
     "ejs": "^2.5.1",
     "express": "^4.14.0",
     "jspm": "^0.16.45",
     "puppeteer": "^1.5.0",
     "replace-ext": "^1.0.0",
+    "selection-box": "^0.2.2",
     "systemjs": "^0.19.47"
   },
   "directories": {
@@ -22,6 +25,8 @@
   },
   "description": "",
   "devDependencies": {
+    "webpack": "^4.16.0",
+    "webpack-command": "^0.4.1"
   },
   "jspm": {
     "directories": {

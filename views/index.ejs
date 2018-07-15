@@ -31,11 +31,7 @@
 	</div>
 
 	<$if (isDev) { $>
-		<script src='/system.js'></script>
-		<script src='/config.js'></script>
-		<script>
-		  System.import('/js/main.js');
-		</script>
+		<script src='/bundle.js'></script>
 	<$ } else { $>
 		<script src='/app.js'></script>
 	<$ } $>
