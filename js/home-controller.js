@@ -12,6 +12,7 @@ function HomeController (options, locals) {
 	this.SelectionBox = options.SelectionBox;
 	this.footerTemplate = options.footerTemplate;
 	this.html = options.html;
+  this.paginationTemplate = options.paginationTemplate;
 	this.bannerTemplate = options.bannerTemplate;
 }
 
@@ -27,6 +28,7 @@ HomeController.prototype = {
 			el.className = 'container';
 			this.appEl.innerHTML = '';
 
+      //  this can be abstracted into a superclass
 			this.delegate(el, {
 				'click [data-internal-link]' : this.handleInternalLink
 			});
@@ -34,6 +36,7 @@ HomeController.prototype = {
 			var asideEl = document.createElement('div');
 			asideEl.className = 'aside';
 			this.renderAside(asideEl, model);
+			el.appendChild(asideEl);
 
 			var mainEl = document.createElement('div');
 			mainEl.className = 'content';
@@ -42,8 +45,16 @@ HomeController.prototype = {
 
 			this.renderResults(mainEl, model.getResults());
 
-			el.appendChild(asideEl);
 			el.appendChild(mainEl);
+
+      this.html(el, this.paginationTemplate({
+        links: [
+          { href: '', label: 1, },  
+          { href: '', label: 2, },  
+          { href: '', label: 3, },  
+          { href: '', label: 4, },  
+        ] 
+      }));
 
 			this.html(el, this.footerTemplate({}));
 
@@ -68,6 +79,7 @@ HomeController.inject = [
 	,'SelectionBox'
 	,'footerTemplate'
 	,'bannerTemplate'
+  ,'paginationTemplate'
 	,'html'
 	];
 

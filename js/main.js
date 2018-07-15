@@ -20,6 +20,7 @@ let resultTemplate     = require('js/templates/result.js');
 let asideTemplate      = require('js/templates/aside.js');
 let footerTemplate     = require('js/templates/footer.js');
 let bannerTemplate     = require('js/templates/banner.js');
+let paginationTemplate = require('js/templates/pagination.js');
 let emperorTemplate    = require('js/templates/emperor.js');
 let handleRequest      = require('js/handle-request.js');
 
@@ -45,6 +46,7 @@ injector.register('resultTemplate',     resultTemplate,     Injector.VALUE);
 injector.register('asideTemplate',      asideTemplate,      Injector.VALUE);
 injector.register('footerTemplate',     footerTemplate,     Injector.VALUE);
 injector.register('bannerTemplate',     bannerTemplate,     Injector.VALUE);
+injector.register('paginationTemplate', paginationTemplate, Injector.VALUE);
 injector.register('emperorTemplate',    emperorTemplate,    Injector.VALUE);
 injector.register('handleRequest',      handleRequest,      Injector.FACTORY_FUNCTION);
 injector.register('injector',           injector,           Injector.VALUE);
