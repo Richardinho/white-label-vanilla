@@ -1,4 +1,4 @@
-describe('router', function () {
+xdescribe('router', function () {
 
 	var router;
 

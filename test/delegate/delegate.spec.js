@@ -1,4 +1,4 @@
-describe('delegate()', function () {
+xdescribe('delegate()', function () {
 
 	var el;
 

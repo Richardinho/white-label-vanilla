@@ -14,6 +14,7 @@
     "ejs": "^2.5.1",
     "express": "^4.14.0",
     "jspm": "^0.16.45",
+    "karma-webpack": "^3.0.0",
     "puppeteer": "^1.5.0",
     "replace-ext": "^1.0.0",
     "selection-box": "^0.2.2",
@@ -25,6 +26,10 @@
   },
   "description": "",
   "devDependencies": {
+    "jasmine-core": "^3.1.0",
+    "karma": "^2.0.4",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-jasmine": "^1.1.2",
     "webpack": "^4.16.0",
     "webpack-command": "^0.4.1"
   },

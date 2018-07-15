@@ -1,5 +1,4 @@
 'use strict';
-
 var TemplateEngine = function(tpl, data) {
 	return getTemplateFunction(tpl).apply(data);
 }
