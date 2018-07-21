@@ -10,7 +10,7 @@ let renderAside = function (options) {
 
   const handleFilterChange = (key, criteria) => event => {
     const value = event.target.value;
-    const newCriteria = { ...criteria, [key]: value };
+    const newCriteria = { ...criteria, offset: 0, [key]: value };
     const queryString = buildQueryStringFromCriteria(newCriteria);
 		router.navigate(queryString);
   };
