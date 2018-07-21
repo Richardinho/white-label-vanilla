@@ -1,7 +1,23 @@
 'use strict';
 
+function buildPaginationData(offset, limit, totalResults) {
+  const pages = Math.ceil(totalResults / limit);
+
+  const links = [];
+
+  for (let i = 0; i < pages; i++) {
+    links.push({
+      href: i,
+      label: i + 1,
+    });
+  }
+
+  return {
+    links: links,
+  };
+}
+
 function HomeController (options, locals) {
-	console.log('create new controller');
 	this.appEl = locals[0];
 	this.loadingPanel = options.loadingPanel;
 	this.dataService = options.dataService;
@@ -14,73 +30,68 @@ function HomeController (options, locals) {
 	this.html = options.html;
   this.paginationTemplate = options.paginationTemplate;
 	this.bannerTemplate = options.bannerTemplate;
+  this.buildCriteriaFromQueryString = options.buildCriteriaFromQueryString;
+  this.buildQueryStringFromCriteria = options.buildQueryStringFromCriteria;
 }
 
 HomeController.prototype = {
 
 	handleRequest : function (queryString) {
+    const criteria = this.buildCriteriaFromQueryString(queryString);
 
 		this.loadingPanel.addLoadingPanel();
 
-		this.dataService.getData(queryString).then((model) => {
+    this.appEl.innerHTML = '';
 
-			var el = document.createElement('div');
-			el.className = 'container';
-			this.appEl.innerHTML = '';
+    const el = document.createElement('div');
+    const asideEl = document.createElement('div');
+    const mainEl = document.createElement('div');
 
-      //  this can be abstracted into a superclass
-			this.delegate(el, {
-				'click [data-internal-link]' : this.handleInternalLink
-			});
+    this.html(el, this.bannerTemplate({}));
+    this.renderAside(asideEl, criteria);
 
-			var asideEl = document.createElement('div');
-			asideEl.className = 'aside';
-			this.renderAside(asideEl, model);
-			el.appendChild(asideEl);
+    el.className = 'container';
+    asideEl.className = 'aside';
+    mainEl.className = 'content';
 
-			var mainEl = document.createElement('div');
-			mainEl.className = 'content';
+    el.appendChild(asideEl);
+    el.appendChild(mainEl);
 
-			this.html(el, this.bannerTemplate({}));
+    this.html(el, this.footerTemplate({}));
 
-			this.renderResults(mainEl, model.getResults());
+    this.appEl.appendChild(el);
 
-			el.appendChild(mainEl);
+    this.dataService
+      .getData(this.buildQueryStringFromCriteria(criteria))
+      .then(response => {
+        this.delegate(el, {
+          'click [data-internal-link]' : this.handleInternalLink
+        });
 
-      this.html(el, this.paginationTemplate({
-        links: [
-          { href: '', label: 1, },  
-          { href: '', label: 2, },  
-          { href: '', label: 3, },  
-          { href: '', label: 4, },  
-        ] 
-      }));
+        this.renderResults(mainEl, response.results, response.meta, criteria);
 
-			this.html(el, this.footerTemplate({}));
+        new this.SelectionBox('#simple-styling');
+        new this.SelectionBox('#dynasties');
 
-			this.appEl.appendChild(el);
-
-			new this.SelectionBox('#simple-styling');
-			new this.SelectionBox('#dynasties');
-
-			this.loadingPanel.removeLoadingPanel();
-
-		});
-	}
+        this.loadingPanel.removeLoadingPanel();
+      });
+  }
 };
 
 HomeController.inject = [
-	'dataService'
-	,'delegate'
-	,'handleInternalLink'
-	,'loadingPanel'
-	,'renderAside'
-	,'renderResults'
-	,'SelectionBox'
-	,'footerTemplate'
-	,'bannerTemplate'
-  ,'paginationTemplate'
-	,'html'
+	'dataService',
+	'delegate',
+	'handleInternalLink',
+	'loadingPanel',
+	'renderAside',
+	'renderResults',
+	'SelectionBox',
+	'footerTemplate',
+	'bannerTemplate',
+  'paginationTemplate',
+	'html',
+  'buildCriteriaFromQueryString',
+  'buildQueryStringFromCriteria',
 	];
 
 

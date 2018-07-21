@@ -3,15 +3,14 @@
 
 function emperorController(options, locals) {
 
-	var appEl = locals[0]
-	    ,loadingPanel = options.loadingPanel
-	    ,dataService = options.dataService
-	    ,delegate = options.delegate
-	    ,handleInternalLink = options.handleInternalLink
-	    ,bannerTemplate = options.bannerTemplate
-	    ,emperorTemplate = options.emperorTemplate
-	    ,html = options.html
-	    ;
+	const appEl = locals[0];
+	const loadingPanel = options.loadingPanel;
+	const dataService = options.dataService;
+	const delegate = options.delegate;
+	const handleInternalLink = options.handleInternalLink;
+	const bannerTemplate = options.bannerTemplate;
+	const emperorTemplate = options.emperorTemplate;
+	const html = options.html;
 
 	return function handleRequest(queryString) {
 
@@ -19,7 +18,7 @@ function emperorController(options, locals) {
 
 		dataService.getEmperorData(queryString).then(function(model){
 			appEl.innerHTML = '';
-			var el = document.createElement('div');
+			const el = document.createElement('div');
 			delegate(el, {
 				'click [data-internal-link]' : handleInternalLink
 			});
@@ -32,13 +31,13 @@ function emperorController(options, locals) {
 	};
 }
 emperorController.inject = [
-	'loadingPanel'
-	,'dataService'
-	,'delegate'
-	,'handleInternalLink'
-	,'bannerTemplate'
-	,'emperorTemplate'
-	,'html'
+	'loadingPanel',
+	'dataService',
+	'delegate',
+	'handleInternalLink',
+	'bannerTemplate',
+	'emperorTemplate',
+	'html',
 	]
 
 module.exports = emperorController;

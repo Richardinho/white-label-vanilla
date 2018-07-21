@@ -1,6 +1,11 @@
-<div>
-  Pagination
-  <% for(var i=0; i < 10; i++) { %>
-  hello
+<div class="pagination">
+  <ul>
+  <% for (var i = 0; i < this.links.length; i++) { %>
+    <li><a
+          data-internal-link
+          class="<% this.links[i].active %>"
+          href=<% this.links[i].href %>><% this.links[i].label %></a>
+    </li>
   <% } %>
+  </ul>
 </div>

@@ -1,3 +1,3 @@
 module.exports = function (data) { return (function anonymous() {
-var r=[];r.push("<div>  Pagination</div>");return r.join("");
+var r=[];r.push("<div class=\"pagination\">  <ul>  "); for (var i = 0; i < this.links.length; i++) { r.push("    <li><a          data-internal-link          class=\"");r.push( this.links[i].active );r.push("\"          href=");r.push( this.links[i].href );r.push(">");r.push( this.links[i].label );r.push("</a>    </li>  "); } r.push("  </ul></div>");return r.join("");
 }).apply(data); };

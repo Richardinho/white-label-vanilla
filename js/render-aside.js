@@ -4,22 +4,37 @@ let renderAside = function (options) {
 
 	var html = options.html;
 	var delegate = options.delegate;
-	var filters = options.filters;
 	var asideTemplate = options.asideTemplate;
+  const buildQueryStringFromCriteria = options.buildQueryStringFromCriteria;
+  const router = options.router;
 
-	return function (el, model) {
+  const handleFilterChange = (key, criteria) => event => {
+    const value = event.target.value;
+    const newCriteria = { ...criteria, [key]: value };
+    const queryString = buildQueryStringFromCriteria(newCriteria);
+		router.navigate(queryString);
+  };
 
-		html(el, asideTemplate(model.getRefinements()));
+	return function (el, criteria) {
+
+		html(el, asideTemplate(criteria));
 
 		delegate(el, {
-			'change #simple-styling' : filters.createHandleSortByToggle(model),
-			'change #dynasties' :      filters.createFilterByDynasty(model),
-			'change #year-from' :      filters.createFilterByYearFrom(model),
-			'change #year-to' :        filters.createFilterByYearTo(model)
+      'change #simple-styling' : handleFilterChange('sortBy', criteria), 
+      'change #dynasties' : handleFilterChange('dynasty', criteria),
+      'change #year-from' : handleFilterChange('yearFrom', criteria),
+      'change #year-to' : handleFilterChange('yearTo', criteria), 
 		});
 
 	}
 }
-renderAside.inject = ['html', 'delegate', 'filters', 'asideTemplate'];
+
+renderAside.inject = [
+  'html',
+  'delegate',
+  'asideTemplate',
+  'buildQueryStringFromCriteria',
+  'router',
+];
 
 module.exports = renderAside;

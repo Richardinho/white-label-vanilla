@@ -1,15 +1,11 @@
-'use strict';
-
-var handleInternalLink = function(options) {
-
-	var router = options.router;
+const handleInternalLink = function(options) {
+	const router = options.router;
 
 	return function (event) {
 		event.preventDefault();
-		var href = event.target.getAttribute('href');
+		const href = event.target.getAttribute('href');
 		router.navigate(href);
 	}
-
 }
 
 handleInternalLink.inject = ['router'];

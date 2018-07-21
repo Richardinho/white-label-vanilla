@@ -1,18 +1,13 @@
-'use strict';
-
-'use strict';
-
 function delegate(el, config) {
-
 	Object.keys(config).forEach(function (key) {
-		var listener = config[key];
-		var event;
-		var selector;
+		let listener = config[key];
+		let event;
+		let selector;
 
 		if(key.search(/\s/) == -1) {
 			event = key;
 		} else {
-			var eventSelector = splitEventFromSelector(key);
+			const eventSelector = splitEventFromSelector(key);
 			event = eventSelector[0];
 			selector = eventSelector[1];
 		}
@@ -21,7 +16,8 @@ function delegate(el, config) {
 			if(!selector) {
 				listener(event);
 			} else {
-				var target = event.target;
+				let target = event.target;
+
 				while(target !== el) {
 					if (target.matches(selector)) {
 						listener(convertEvent(event, el, target))
